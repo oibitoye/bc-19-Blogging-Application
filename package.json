@@ -1,0 +1,32 @@
+{
+  "name": "blogsite",
+  "version": "1.0.0",
+  "description": "Andela Blogging System",
+  "engines": {
+    "node": "5.9.1"
+  },
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "ejs": "2.4.1",
+    "express": "4.13.3",
+    "monk" : "*",
+    "pug" : "*",
+    "morgan": "*",
+    "serve-favicon": "*",
+    "mysql": "*",
+    "body-parser":
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/oibitoye/bc-19-Blogging-Application"
+  },
+  "keywords": [
+    "node",
+    "heroku",
+    "express"
+  ],
+  "license": "MIT"
+}
