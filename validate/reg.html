@@ -1,48 +1,119 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="utf-8">
 	<title>Register...</title> 
     <link href="../styles/main.css" type="text/css" rel="stylesheet">
-    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-    <script src="validate.js"> </script>
+    <script type="text/javascript" src="/lib/jquery.js"></script>
+   <!--  <script src="/dist/jquery.validate.js"> </script> -->
+    <script type="text/javascript">
+    require(["jquery", "../../dist/jquery.validate"],
+        $().ready(function() {
+    $("#reg").validate({
+        rules: {
+            fname: "required",
+            lname: "required",
+            username: {
+                required: true,
+                minlength: 2
+            },
+            password: {
+                required: true,
+                minlength: 6
+            },
+            password_confirmation: {
+                required: true,
+                minlength: 6,
+                equalTo: "#password"
+            },
+            email: {
+                required: true,
+                email: true
+            },
+            topic: {
+                required: "#category:checked",
+                minlength: 1
+            },
+            agree: "required"
+        },
+            messages: {
+                fname: "Please enter your firstname",
+                lname: "Please enter your lastname",
+                username: {
+                    required: "Please enter a username",
+                    minlength: "Your username must be at least 2 characters long"
+                },
+                password: {
+                    required: "Please enter a password",
+                    minlength: "Password must be at least 6 characters long"
+                },
+                password_confirmation: {
+                    required: "Please enter a password",
+                    minlength: "Password must be at least 6 characters long",
+                    equalTo: "Password must be same as above"
+                },
+                agree: "Please accept our policy to proceed",
+                topic: "Please select at least one category"
+            }
+        });
+
+    $("#username").focus(function() {
+        var fname = $("#fname").val();
+        var lname = $("#lname").val();
+        if (fname && lname && !this.value) {
+            this.value = fname + "." + lastname;
+        }
+    });
+
+    var category = $("#category");
+
+    var x = category.is(":checked");
+    var topics = $("#category_topic")[x ? "removeClass" : "addClass"](hide);
+    var cat_input = topics.find("input").attr("disabled", !x);
+
+    category.click(function() {
+        topics[this.checked ? "removeClass" : "addClass"]("hide");
+        cat_input.attr("disabled", !this.checked);
+    });
+}));
+
+    </script>
 </head>
 <body>
-    <div id="header">
-        
-    </div>
-    
-    <form method="get" id="reg" action="../form-handler.html" autocomplete="off">
+
+    <form class="valform" method="get" id="reg" action="../form-handler.html" autocomplete="off">
+<!--     <form name="local_storage_form" method="post"  autocomplete="off" class="valform"> -->
         <fieldset id="formpage">
             <legend class="legend"> Registration Form</legend>
-            <div>
-            <label for="fname" class="instruct">Firstname</label>
+            <p>
+            <label for="fname" class="instruct">Firstname</label> <br>
             <input class="texInput" id="fname" type="text" placeholder="First Name" name="fname">
-            </div>
-            <div>
-            <label for="lname" class="instruct">Lastname</label> 
+            </p>
+            <p>
+            <label for="lname" class="instruct">Lastname</label> <br>
             <input class="texInput" id="lname" type="text" placeholder="Last Name" name="lname">
-        </div>
-        <div>
-            <label for="username" class="instruct">Choose a username</label>  
+            </p>
+            <p>
+            <label for="username" class="instruct">Choose a username</label>  <br>
             <input class="texInput" type="text" placeholder="UserName" name="username">
-        </div>
-        <div> 
-            <label for="email" class="instruct"> Enter your Email Address</label> 
+            </p>
+            <p>
+            <label for="email" class="instruct"> Enter your Email Address</label> <br>
             <input class="texInput" type="email" placeholder="Email Address" name="email">
-        </div>
-        <div>
-            <label for="password" class="instruct"> Type in your preferred Password (must be more than 6 character)</label> 
+            </p>
+            <p>
+            <label for="password" class="instruct"> Type in your preferred Password <br>(must be more than 6 character)</label> <br>
             <input class="texInput" type="password" placeholder="Password" name="password">
-        </div>
-        <div> 
-            <label for="password" class="instruct"> Please confirm your Password (must be same as above)</label> 
+            </p>
+            <p>
+            <label for="password" class="instruct"> Please confirm your Password <br>(must be same as above)</label> <br>
             <input class="texInput" type="password" placeholder="Password Confirmation" name="password_confirmation">
-        </div>
-        <div>
+            </p>
+            <p>
             <label for="agree" class="instruct"> Please agree to our policy</label> 
             <input class="checkbox" type="checkbox" id="agree" name="password_confirmation">
-        </div>
-        <div>
+            </p>
+            <p>
             <label for="topic" class="instruct">Please select your area(s) of Interest
             </label>
             <input class="checkbox" type="checkbox" id="category" name="category">
@@ -53,19 +124,17 @@
                 </label>
                 <label for="automobiles">
                     <input type="checkbox" name="topic" value="programming">Automobiles
-                </label>
+                </label><br>
                 <label for="network">
                     <input type="checkbox" name="topic" value="network">Networking
-                </label>
-                <label for="topic">
-                    <input type="checkbox" class="topic_error">Please select at least one category.
+                </label><br>
+                <label for="topic" class="topic_error">Please select at least one category.
                 </label>
             </fieldset>
-        </div>
-        <div>
+            <p>
             <input class="submit" type="submit" name="submit
             " value="Register" >
-        </div>
+            </p>
         </fieldset>
     </form>
     
