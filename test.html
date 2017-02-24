@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script type="text/javascript">
+		$('#add').click( function() {
+   var Description = $('#description').val();
+  if($("#description").val() == '') {
+    $('#alert').html("<strong>Warning!</strong> You left the to-do empty");
+    $('#alert').fadeIn().delay(1000).fadeOut();
+    return false;
+   }
+   $('#todos').prepend("<li><input id='check' name='check' type='checkbox'/>" + Description + "</li>");
+   $('#form')[0].reset();
+   var todos = $('#todos').html();
+   localStorage.setItem('todos', todos);
+   return false;
+});
+
+if(localStorage.getItem('todos')) {
+$('#todos').html(localStorage.getItem('todos'));
+}
+
+$('#clear').click( function() {
+window.localStorage.clear();
+location.reload();
+return false;
+});
+	</script>
+</head>
+<body>
+
+</body>
+</html>
+<!-- 
+Blog
+Freebies Deals News Apps
+Articles
+Behance
+Books
+Codepen
+Comics
+Deals
+Dribbble
+Events
+Github
+Interviews
+Photos
+Play
+Podcasts
+Quotes
+Scripts
+Vectors
+Videos
+
+
+Articles
+HTML
+How to use local storage for JavaScript
+By Sara Vieira • Posted Apr. 30, 2013 • Reading time: 4 minutes
+68
+215
+22
+
+Creating an to-do app is usually the first application you learn how to build in JavaScript but the problem with all those apps is that when you reload the page all those to-do’s are gone.
+
+There is a simple solution though, and that’s to use local storage. The good thing about local storage is that you can save those bits of data to the user’s computer so that when they reload the page all of their todo’s will still be there and local storage is actually quite simple when it comes to saving the data and making it available on the page.
+
+ 
+What is local storage?
+
+Local storage is a part of web storage, which itself is part of the HTML5 specification. There are two options for storing data in the specification:
+
+    Local Storage: stores data with no expiration date and this is the one we will be using because we want our to-do’s to stay on the page for as long as possible.
+    Session Storage: only saves the data for one session so if the user closes the tab and reopens it all their data will be gone.
+
+In simple terms, all that web storage does is store named key/value pairs locally and unlike cookies this data persists even if you close your browser or turn off your computer.
+
+ 
+The HTML
+
+If we think about a to-do list what we will need is :
+
+    An input to place our to-do.
+    An input button to add our to-do.
+    A button to clear all the to-do’s.
+    A placeholder unordered list where our to-do’s will be placed in list items.
+    And finally we need a placeholder div to show an alert when you try to enter an empty to do.
+
+So our HTML should look something like this: -->
+
+<span style="font-family: Consolas, Monaco, monospace; font-size: 12px; line-height: 18px;"><section>
+</span><span style="font-family: Consolas, Monaco, monospace; font-size: 12px; line-height: 18px;">  <form id="form" action="#" method="POST">
+</span><span style="font-family: Consolas, Monaco, monospace; font-size: 12px; line-height: 18px;">  <input id="description" name="description" type="text" />
+</span><span style="font-family: Consolas, Monaco, monospace; font-size: 12px; line-height: 18px;">  <input id="add" type="submit" value="Add" />
+</span><span style="font-family: Consolas, Monaco, monospace; font-size: 12px; line-height: 18px;">  <button id="clear">Clear All</button>
+</span><span style="font-family: Consolas, Monaco, monospace; font-size: 12px; line-height: 18px;">  </form>
+</span><span style="font-family: Consolas, Monaco, monospace; font-size: 12px; line-height: 18px;">  <div id="alert"></div>
+</span><span style="font-family: Consolas, Monaco, monospace; font-size: 12px; line-height: 18px;">  <ul id="todos"></ul>
+</span><span style="font-family: Consolas, Monaco, monospace; font-size: 12px; line-height: 18px;"></section></span>
+

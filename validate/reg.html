@@ -163,21 +163,24 @@ window.onload = function() {
     </div>
   </div>
 <!--     <form class="valform" method="get" onsubmit="store()" id="reg" autocomplete="off"> -->
+</head>
+<body>
+
+    <form class="valform" method="get" id="reg" action="../form-handler.html" autocomplete="off">
 <!--     <form name="local_storage_form" method="post"  autocomplete="off" class="valform"> -->
-        <form id= "reg">
         <fieldset id="formpage">
             <legend class="legend"> Registration Form</legend>
             <p>
             <label for="fname" class="instruct">Firstname</label> <br>
-            <input class="texInput" id="fname" type="text" placeholder="First Name" name="fname" required>
+            <input class="texInput" id="fname" type="text" placeholder="First Name" name="fname">
             </p>
             <p>
             <label for="lname" class="instruct">Lastname</label> <br>
-            <input class="texInput" id="lname" type="text" placeholder="Last Name" name="lname" required>
+            <input class="texInput" id="lname" type="text" placeholder="Last Name" name="lname">
             </p>
             <p>
             <label for="username" class="instruct">Choose a username</label>  <br>
-            <input class="texInput" type="text" placeholder="UserName" name="username" required>
+            <input class="texInput" type="text" placeholder="UserName" name="username">
             </p>
             <p>
             <label for="email" class="instruct"> Enter your Email Address</label> <br>
@@ -223,7 +226,7 @@ window.onload = function() {
             </fieldset>
             <p>
             <input class="submit" onsubmit="store()" type="submit" name="submit
-            " value="Register" >
+            <input class="submit" type="submit" name="submit" value="Register">
             </p>
         </fieldset>
     </form>
